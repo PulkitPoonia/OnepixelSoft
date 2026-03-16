@@ -1,0 +1,12 @@
+export const LOAD_FILES = 'LOAD_FILES';
+export const SET_CURRENT_FILE = 'SET_CURRENT_FILE';
+export const UPLOAD_FILE = 'UPLOAD_FILE';
+export const DELETE_FILE = 'DELETE_FILE';
+export const RESTORE_FILE = 'RESTORE_FILE';
+export const TOGGLE_STAR_FILE = 'TOGGLE_STAR_FILE';
+export const RENAME_FILE = 'RENAME_FILE';
+export const FILTER_FILES = 'FILTER_FILES';
+export const LOAD_STORAGE_INFO = 'LOAD_STORAGE_INFO';
+export const SET_LOADING = 'SET_LOADING';
+export const SET_ERROR = 'SET_ERROR';
+export const CLEAR_ERROR = 'CLEAR_ERROR';

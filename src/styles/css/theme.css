@@ -1,0 +1,220 @@
+/* ================= ROOT VARIABLES ================= */
+:root {
+  --bg-main: #f5f6fa;
+  --bg-chat: #f5f6fa;
+  --bg-sidebar: #ffffff;
+  --bg-header: #f0f2f5;
+
+  --text-primary: #111;
+  --text-secondary: #667781;
+
+  --msg-sent: #d9fdd3;
+  --msg-received: #ffffff;
+
+  --border: #e0e0e0;
+
+  /* ✅ FIX ADDED */
+  --primary: #00a884;
+}
+
+/* ================= DARK MODE (SCOPED) ================= */
+.chat-app-root.dark {
+  --bg-main: #0b141a;
+  --bg-chat: #0b141a;
+  --bg-sidebar: #111b21;
+  --bg-header: #202c33;
+
+  --text-primary: #e9edef;
+  --text-secondary: #8696a0;
+
+  --msg-sent: #005c4b;
+  --msg-received: #202c33;
+
+  --border: #2a3942;
+
+  /* ✅ FIX ADDED */
+  --primary: #00a884;
+}
+
+/* ================= GLOBAL ================= */
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* ================= APP LAYOUT ================= */
+.chat-app-root {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  background: var(--bg-main);
+}
+
+.chat-app-container {
+  display: flex;
+  height: 100%;
+  width: 100%;
+}
+
+/* ================= SIDEBAR ================= */
+.chat-sidebar {
+  width: 320px;
+  min-width: 320px;
+  height: 100%;
+  overflow-y: auto;
+  background: var(--bg-sidebar);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+}
+
+/* ================= MAIN ================= */
+.chat-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-width: 0;
+  background: var(--bg-chat);
+}
+
+/* ================= HEADER ================= */
+.chat-header {
+  height: 60px;
+  min-height: 60px;
+  flex-shrink: 0;
+  background: var(--bg-header);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+}
+
+/* ================= BODY ================= */
+.chat-body {
+  flex: 1;
+  padding: 0;
+  background: var(--bg-chat);
+  overflow: hidden;
+}
+
+/* ================= FOOTER ================= */
+.chat-footer {
+  height: 60px;
+  flex-shrink: 0;
+  min-height: 60px;
+  background: var(--bg-header);
+  border-top: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  position: relative;
+  width: 100%;
+}
+
+/* ================= EMPTY ================= */
+.chat-empty {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+}
+
+/* ================= MESSAGE ================= */
+.message {
+  max-width: 55%;
+  padding: 10px 14px;
+  border-radius: 12px;
+  margin-bottom: 12px;
+  font-size: 14px;
+  word-wrap: break-word;
+}
+
+.message.sent {
+  background: var(--msg-sent);
+  color: var(--text-primary);
+  margin-left: auto;
+}
+
+.message.received {
+  background: var(--msg-received);
+  color: var(--text-primary);
+  margin-right: auto;
+}
+
+/* ================= SCROLL ================= */
+.chat-body::-webkit-scrollbar {
+  width: 6px;
+}
+
+.chat-body::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 3px;
+}
+
+.chat-body::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* ================= FIX: REMOVE EXTRA FOOTER PADDING ================= */
+[data-footer="simple"].hk-wrapper .hk-pg-wrapper {
+  padding-bottom: 0 !important;
+}
+
+.hk-pg-wrapper {
+  padding-bottom: 0 !important;
+  padding-top: 0 !important;
+}
+
+/* ================= FORCE DARK APPLY ================= */
+.chat-app-root.dark .chat-sidebar {
+  background: var(--bg-sidebar) !important;
+}
+
+.chat-app-root.dark .chat-main,
+.chat-app-root.dark .chat-body {
+  background: var(--bg-chat) !important;
+}
+
+.chat-app-root.dark .chat-header,
+.chat-app-root.dark .chat-footer {
+  background: var(--bg-header) !important;
+}
+/* CHAT APP LAYOUT FIX */
+
+.chat-app-root {
+  height: calc(100vh - 60px); /* adjust if navbar height differs */
+  overflow: hidden;
+}
+
+.chat-app-container {
+  display: flex;
+  height: 100%;
+}
+
+.chat-sidebar {
+  height: 100%;
+  overflow: hidden;
+}
+
+.chat-main {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  height: 100%;
+}
+
+.chat-header {
+  flex-shrink: 0;
+}
+
+.chat-body {
+  flex: 1;
+  overflow: hidden;
+}
+
+.chat-footer {
+  flex-shrink: 0;
+}

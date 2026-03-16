@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <!-- Theme favicon -->
+  <link id="theme-favicon" rel="icon" href="/favicon-light.png" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="React bootstrap based react admin dashboard template by hencework" />
+
+  <meta name="keywords"
+    content="React template, react admin, react node, react bootstrap, responsive web application, react webapp, multi app demos" />
+
+  <meta name="author" content="Hencework" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://hencework.com/" />
+
+  <meta property="og:title" content="Onepixel Soft | Modern SaaS App Template Built on React" />
+
+  <meta property="og:description"
+    content="Introducing our premier React admin dashboard template – a seamless blend of React's modern capabilities with the robust and responsive design of Bootstrap. Crafted with precision by the innovative minds at Hencework." />
+
+  <meta property="og:image" content="https://react-onepixelsoft-classic.netlify.app/og-img.png" />
+
+  <title>OnepixelSoft</title>
+</head>
+
+<body>
+  <div id="root"></div>
+
+  <script type="module" src="/src/main.jsx"></script>
+
+  <!-- Auto favicon switch -->
+  <script>
+    function updateFavicon() {
+      const isDark =
+        window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+      const favicon = document.getElementById("theme-favicon");
+
+      if (favicon) {
+        favicon.href = isDark
+          ? "/favicon-dark.png"
+          : "/favicon-light.png";
+      }
+    }
+
+    // Run once
+    updateFavicon();
+
+    // Listen for OS theme changes
+    window.matchMedia('(prefers-color-scheme: dark)')
+      .addEventListener('change', updateFavicon);
+  </script>
+
+</body>
+
+</html>
