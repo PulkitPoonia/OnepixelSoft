@@ -14,25 +14,6 @@ export default defineConfig({
   build: {
     chunkSizeWarningLimit: 1000,
     cssCodeSplit: true, // Enable CSS code-splitting
-    rollupOptions: {
-      output: {
-        manualChunks(id) {
-         
-          if (id.includes('node_modules')) {
-            
-            if (id.includes('moment')) {
-              return 'vendor_moment';
-            }
-            
-            if (id.includes('react') || id.includes('redux')) {
-              return 'vendor_react';
-            }
-           
-            return 'vendor';
-          }
-        }
-      }
-    }
   },
  
   css: {

@@ -117,7 +117,9 @@ function App() {
   return (
   
       <BrowserRouter>
-        <AppContent />
+        <ErrorBoundary>
+          <AppContent />
+        </ErrorBoundary>
       </BrowserRouter>
   
   );
