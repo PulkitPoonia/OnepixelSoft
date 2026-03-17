@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import { Navbar as BootstrapNavbar, Container, Nav } from 'react-bootstrap';
+import BootstrapNavbar from 'react-bootstrap/Navbar';
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
 import { connect } from 'react-redux';
 import CompactMenu from './CompactMenu';
 
