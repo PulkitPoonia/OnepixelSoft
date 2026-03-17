@@ -15,7 +15,6 @@ import { LogOut, Moon, Sun, Bell } from 'react-feather';
 const SILENT_WAV = "data:audio/wav;base64,UklGRigAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQQAAAAAAA==";
 
 import socketService from '../../utils/socketService';
-import 'bootstrap/js/dist/collapse';
 import { connect } from 'react-redux';
 
 // Logo imports
