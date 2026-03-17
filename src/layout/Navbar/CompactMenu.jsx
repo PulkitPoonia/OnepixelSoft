@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import React, { useEffect, useState, useRef } from 'react';
-import { Container, Nav } from 'react-bootstrap';
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
 import { Link, NavLink, useNavigate, useLocation } from 'react-router-dom';
 import SimpleBar from 'simplebar-react';
 import { horizontalMenu } from '../../utils/HorizontalNavInit';
