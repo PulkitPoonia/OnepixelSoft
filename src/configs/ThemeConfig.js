@@ -22,6 +22,15 @@ export const THEME_CONFIG = {
 			'--sent-bubble-text-dark': '#fff',
 			'--received-bubble-bg-dark': '#2a2f32',
 			'--received-bubble-text-dark': '#e9edef',
+			// Dashboard-specific dark theme variables
+			'--dashboard-bg-dark': '#0f172a',
+			'--dashboard-title-dark': '#f1f5f9',
+			'--dashboard-subtitle-dark': '#94a3b8',
+			'--dashboard-date-dark': '#64748b',
+			'--dashboard-card-bg-dark': '#1e293b',
+			'--dashboard-card-border-dark': 'rgba(255, 255, 255, 0.08)',
+			'--dashboard-card-label-dark': '#cbd5e1',
+			'--dashboard-card-sub-dark': '#64748b',
 		},
 	},
 };

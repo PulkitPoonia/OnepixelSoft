@@ -30,7 +30,7 @@ function serveStaticFile(req, res) {
     // Decode URI so spaces and special chars are handled
     const decodedUrl = decodeURIComponent(req.url);
     const filePath = path.join(__dirname, decodedUrl);
-    
+
     if (!fs.existsSync(filePath)) {
       res.writeHead(404, { 'Content-Type': 'application/json' });
       return res.end(JSON.stringify({ error: 'File not found' }));
@@ -38,7 +38,7 @@ function serveStaticFile(req, res) {
 
     try {
       const stats = fs.statSync(filePath);
-      
+
       // Set proper content-type based on file extension
       const ext = path.extname(filePath).toLowerCase();
       let contentType = 'application/octet-stream';
@@ -106,13 +106,15 @@ function getUserFromRequest(req) {
 
 /* ================= CORS ================= */
 function addCors(res) {
+
   res.setHeader('Access-Control-Allow-Origin', CORS_ORIGIN);
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
   res.setHeader('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE,OPTIONS');
+  
 }
 
 async function startServer() {
-  
+
   client = new MongoClient(process.env.MONGO_URI);
   await client.connect();
   console.log('✅ MongoDB Connected');
@@ -134,10 +136,10 @@ async function startServer() {
 
   // 🧹 Setup auto-cleanup for old deleted files (bin cleanup every 24 hours)
   console.log('🧹 Setting up auto-cleanup for files deleted over 30 days ago...');
-  
+
   // Run cleanup on startup
   await autoClearOldDeletedFiles(db);
-  
+
   // Schedule cleanup to run every 24 hours
   const CLEANUP_INTERVAL = 24 * 60 * 60 * 1000; // 24 hours
   setInterval(async () => {
@@ -365,13 +367,13 @@ async function startServer() {
         const body = await readJson(req);
         let participants = Array.isArray(body.participants) ? body.participants : [];
         const groupName = body.groupName || null;
-        
+
         // ✅ NORMALIZE: Keep only username (and optionally name) from participants
         participants = participants.map(p => ({
           username: p.username,
           ...(p.name ? { name: p.name } : {})
         })).filter(p => p.username);
-        
+
         // Ensure current user is included
         if (!participants.find(p => p.username === user.username)) {
           participants.push({ username: user.username });
@@ -380,10 +382,10 @@ async function startServer() {
         participants = participants.filter((p, idx, arr) =>
           arr.findIndex(x => x.username === p.username) === idx
         );
-        
+
         // If it's a group (has groupName or 3+ participants), don't check for existing
         const isGroup = groupName || participants.length >= 3;
-        
+
         // Check if a conversation already exists with these participants
         if (!isGroup) {
           // For 1-on-1 chats: check exact participant match
@@ -407,14 +409,14 @@ async function startServer() {
             return res.end(JSON.stringify({ ok: true, conversationId: existingGroup._id }));
           }
         }
-        
+
         const conv = {
           participants,
           createdAt: new Date(),
           updatedAt: new Date(),
           lastMessage: null
         };
-        
+
         // Add groupName and isGroup flag if this is a group
         if (isGroup) {
           conv.isGroup = true;
@@ -422,7 +424,7 @@ async function startServer() {
             conv.groupName = groupName;
           }
         }
-        
+
         // Add group profile picture if provided
         if (body.groupProfilePic && body.groupProfilePic.startsWith('data:image')) {
           try {
@@ -434,14 +436,14 @@ async function startServer() {
               if (!fs.existsSync(uploadDir)) {
                 fs.mkdirSync(uploadDir, { recursive: true });
               }
-              
+
               // Generate unique filename using current timestamp
               const filename = `group-${Date.now()}-${Math.random().toString(36).substring(7)}.png`;
               const filepath = path.join(uploadDir, filename);
-              
+
               // Save file
               fs.writeFileSync(filepath, Buffer.from(base64Data, 'base64'));
-              
+
               // Store relative path in database
               conv.groupProfilePic = `/uploads/group-profiles/${filename}`;
               console.log('📷 Server: Saved group profile pic to:', conv.groupProfilePic);
@@ -450,7 +452,7 @@ async function startServer() {
             console.error('❌ Error saving group profile pic:', err);
           }
         }
-        
+
         const r = await db.collection('chat_conversations').insertOne(conv);
         console.log('✅ Server: Group created:', { id: r.insertedId, hasProfilePic: !!conv.groupProfilePic });
 
@@ -508,7 +510,7 @@ async function startServer() {
       if ((req.method === 'PUT' || req.method === 'POST') && url.pathname === '/api/users') {
         if (await handleAdminRoutes(req, res, client, url)) return;
       }
-      
+
       // File Manager Routes (require authentication)
       if (url.pathname.startsWith('/api/files') || url.pathname.startsWith('/api/storage')) {
         if (user) {
@@ -537,7 +539,7 @@ async function startServer() {
           }
         }
       }
-      
+
       if (await handleChatRoutes(req, res, client, url)) return;
       if (await handleAdminRoutes(req, res, client, url)) return;
 
