@@ -27,6 +27,12 @@ const AdminUsers = () => {
   });
 
   const apiBase = import.meta.env.VITE_API_BASE || 'http://localhost:4000';
+  function getImageUrl(url) {
+  if (!url) return '';
+  if (url.startsWith('http') || url.startsWith('data:')) return url;
+  const cleanPath = url.replace(/\\/g, '/').replace(/^\//, '');
+  return `${apiBase.replace('/api', '')}/${cleanPath}`;
+}
   const navigate = useNavigate();
 
   /* ================= AUTH CHECK ================= */
@@ -380,7 +386,7 @@ const AdminUsers = () => {
                     onChange={(e) => handleFileChange(e, 'profilePic')}
                   />
                   {form.profilePic && <small className="d-block mt-2">
-                    <img src={form.profilePic} alt="profile" style={{ width: 60, height: 60, borderRadius: '50%' }} />
+                    <img src={getImageUrl(form.profilePic)} alt="profile" style={{ width: 60, height: 60, borderRadius: '50%' }} />
                   </small>}
                 </div>
 
@@ -431,7 +437,7 @@ const AdminUsers = () => {
                     <td>
                       {u.profilePic ? (
                         <img
-                          src={u.profilePic}
+                       src={getImageUrl(u.profilePic)}
                           alt="profile"
                           style={{ width: 40, height: 40, borderRadius: '50%' }}
                         />
