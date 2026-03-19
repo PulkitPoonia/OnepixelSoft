@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
+import { API_BASE } from "../../config";
 
-const API_BASE = import.meta.env.VITE_API_BASE || "http://localhost:4000";
 
 const GroupModel = ({ show, onClose, onGroupCreated }) => {
   const [users, setUsers] = useState([]);

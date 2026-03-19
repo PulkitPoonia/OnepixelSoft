@@ -4,6 +4,7 @@ import SimpleBar from 'simplebar-react';
 import { connect } from 'react-redux';
 import { setReply } from '../../../redux/action/Chat';
 import socketService from '../../../utils/socketService';
+import { API_BASE } from '../../../config';
 import debugger_ from '../../../utils/debugger';
 
 const ChatBody = ({ messages, conversationId, conversations, setReply }) => {
@@ -31,7 +32,7 @@ const ChatBody = ({ messages, conversationId, conversations, setReply }) => {
       setDownloadingFileId(fileId);
       setDownloadError(null);
 
-      const BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:4000';
+      const BASE_URL = API_BASE;
       const token = localStorage.getItem('accessToken') || localStorage.getItem('adminToken');
 
       if (!token) {
@@ -216,7 +217,7 @@ const renderMessage = (msg) => {
 
     let pdfData = null;
     let fileData = null;
-    const BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:4000';
+    const BASE_URL = API_BASE;
 
     try {
       const parsed = JSON.parse(msg.text);

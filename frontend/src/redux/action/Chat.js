@@ -1,4 +1,4 @@
-const API_BASE = import.meta.env.VITE_API_BASE || "http://localhost:4000";
+import { API_BASE } from '../../config';
 
 import socketService from '../../utils/socketService';
 import debugger_ from '../../utils/debugger';

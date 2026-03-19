@@ -2,8 +2,7 @@ import { io } from "socket.io-client";
 import store from "../redux/store";
 import debugger_ from "./debugger";
 
-const SOCKET_URL =
-  import.meta.env.VITE_API_BASE || "http://localhost:4000";
+import { API_BASE as SOCKET_URL } from "../config";
 
 // ✅ Global notification queue - works even if CompactMenu hasn't mounted
 const notificationQueue = [];

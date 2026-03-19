@@ -21,6 +21,7 @@ import { useTheme } from '../../../../utils/theme-provider/theme-provider';
 
 // Socket
 import socketService from '../../../../utils/socketService';
+import { API_BASE as apiBase } from '../../../../config';
 
 const Login = () => {
 
@@ -34,8 +35,6 @@ const Login = () => {
     const [errors, setErrors] = useState({});
     const [isAdminLogin, setIsAdminLogin] = useState(false);
 
-    const apiBase =
-        import.meta.env.VITE_API_BASE || 'http://localhost:4000';
 
     /* ================= VALIDATION ================= */
     const validate = () => {

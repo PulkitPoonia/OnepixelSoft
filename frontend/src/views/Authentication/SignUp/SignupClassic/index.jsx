@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import { API_BASE as apiBase } from '../../../../config';
 import { faFacebook, faGoogle } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -29,8 +29,6 @@ const SignupClassic = () => {
 
   const navigate = useNavigate(); // ✅ FIXED
 
-  const apiBase =
-    import.meta.env.VITE_API_BASE || 'http://localhost:4000';
 
   const handleSubmit = async (e) => {
     e.preventDefault();

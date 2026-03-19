@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Button, Container, Table, Spinner, Alert } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { hasPermission } from '../../../utils/permissions';
+import { API_BASE as apiBase } from '../../../config';
 import PermissionsModal from './PermissionsModal';
 
 const AdminUsers = () => {
@@ -26,7 +27,6 @@ const AdminUsers = () => {
     position: ''
   });
 
-  const apiBase = import.meta.env.VITE_API_BASE || 'http://localhost:4000';
   function getImageUrl(url) {
   if (!url) return '';
   if (url.startsWith('http') || url.startsWith('data:')) return url;

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
 import SimpleBar from "simplebar-react";
+import { API_BASE } from "../../config";
 
-const API_BASE = import.meta.env.VITE_API_BASE || 'http://localhost:4000';
 function getImageUrl(url) {
   if (!url) return '';
   if (url.startsWith('/uploads/')) return API_BASE + url;

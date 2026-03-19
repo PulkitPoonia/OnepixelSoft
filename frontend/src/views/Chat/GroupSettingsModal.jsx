@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Button, Form, Modal, Alert } from "react-bootstrap";
-import { connect } from "react-redux";
 import { updateConversation } from "../../redux/action/Chat";
+import { API_BASE } from "../../config";
 import { userHasPermission } from "../../utils/permissions";
 
-const API_BASE = import.meta.env.VITE_API_BASE || "http://localhost:4000";
 
 const GroupSettingsModal = ({ show, onClose, conversation, updateConversation }) => {
   const [users, setUsers] = useState([]);

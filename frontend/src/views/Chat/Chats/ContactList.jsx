@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import debugger_ from '../../../utils/debugger';
-const API_BASE = import.meta.env.VITE_API_BASE || 'http://localhost:4000';
+import { API_BASE } from '../../../config';
 
 function getImageUrl(url) {
   if (!url) return '';

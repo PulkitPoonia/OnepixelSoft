@@ -27,6 +27,7 @@ import {
 } from '../../../redux/action/ToDo';
 import { isUserAdmin } from '../../../utils/taskPermissions';
 import { userHasPermission } from '../../../utils/permissions';
+import { API_BASE } from '../../../config';
 import socketService from '../../../utils/socketService';
 import './styles/Body.css';
 
@@ -47,7 +48,7 @@ const Body = ({ showInfo }) => {
 
   // Fetch latest user data with permissions
   useEffect(() => {
-    fetch('http://localhost:4000/api/me', {
+    fetch(`${API_BASE}/api/me`, {
       headers: {
         'Authorization': `Bearer ${localStorage.getItem('accessToken') || localStorage.getItem('adminToken')}`
       }
@@ -156,7 +157,7 @@ const Body = ({ showInfo }) => {
 
     // Load users for name display (all users) and assignment (admin only)
     setLoadingUsers(true);
-    fetch('http://localhost:4000/api/users?for=chat', {
+    fetch(`${API_BASE}/api/users?for=chat`, {
       headers: {
         'Authorization': `Bearer ${localStorage.getItem('accessToken') || localStorage.getItem('adminToken')}`
       }
@@ -569,7 +570,7 @@ const Body = ({ showInfo }) => {
                                     </small>
                                   </div>
                                   <div className="d-flex gap-2">
-                                    <Button size="sm" variant="outline-info" href={`http://localhost:4000${attachment.url}`} download={attachment.name} target="_blank" title="Download">
+                                    <Button size="sm" variant="outline-info" href={`${API_BASE}${attachment.url}`} download={attachment.name} target="_blank" title="Download">
                                       <i className="ri-download-2-line"></i>
                                     </Button>
                                     {(isAdmin || attachment.uploadedBy === currentUsername) && attachment.id && (
@@ -622,7 +623,7 @@ const Body = ({ showInfo }) => {
                                     </small>
                                   </div>
                                   <div className="d-flex gap-2">
-                                    <Button size="sm" variant="outline-info" href={`http://localhost:4000${attachment.url}`} download={attachment.name} target="_blank" title="Download">
+                                    <Button size="sm" variant="outline-info" href={`${API_BASE}${attachment.url}`} download={attachment.name} target="_blank" title="Download">
                                       <i className="ri-download-2-line"></i>
                                     </Button>
                                     {(isAdmin || attachment.uploadedBy === currentUsername) && attachment.id && (

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Container, Button, Spinner, Alert } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
+import { API_BASE as apiBase } from '../../../config';
 
 const AdminLogin = () => {
   const [form, setForm] = useState({ username: '', password: '' });
@@ -9,9 +10,6 @@ const AdminLogin = () => {
 
   const navigate = useNavigate();
 
-  // ✅ FIXED BASE URL
-  const apiBase =
-    import.meta.env.VITE_API_BASE || "http://localhost:4000";
 
   const submit = async (e) => {
     e.preventDefault();

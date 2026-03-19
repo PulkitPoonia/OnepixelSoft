@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState } from 'react';
 import { Button, Card, Col, Container, Form, InputGroup, Row, Spinner } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
+import { API_BASE as apiBase } from '../../../../config';
 import CommanFooter1 from '../../CommanFooter1';
 import { useTheme } from '../../../../utils/theme-provider/theme-provider';
 
@@ -24,7 +25,6 @@ const Signup = () => {
     const [submitting, setSubmitting] = useState(false);
     const navigate = useNavigate();
 
-    const apiBase = import.meta.env.VITE_API_BASE || 'http://localhost:4000';
 
     const validate = () => {
         const e = {};

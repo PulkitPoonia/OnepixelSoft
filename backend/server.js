@@ -35,6 +35,8 @@ const __dirname = path.dirname(__filename);
 
 const PORT = process.env.PORT || 4000;
 const CORS_ORIGIN = process.env.VITE_CORS_ORIGIN || 'http://localhost:5173';
+// Support multiple origins via ALLOWED_ORIGINS comma-separated list
+const ALLOWED_ORIGINS_ENV = process.env.ALLOWED_ORIGINS ? process.env.ALLOWED_ORIGINS.split(',').map(o => o.trim()) : [];
 const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB in bytes
 
 let client;
@@ -133,18 +135,35 @@ function getUserFromRequest(req) {
 
 /* ================= CORS ================= */
 function addCors(res, req) {
- const allowedOrigins = [
-  'http://localhost:5173',
-  'https://onepixel-soft.vercel.app',
-];
+  const allowedOrigins = [
+    'http://localhost:5173',
+    'http://localhost:3000',
+    'http://localhost:4000',
+    'https://onepixel-soft.vercel.app',
+    'https://onepixelsoft.onrender.com', // In case self-requests are needed
+    ...ALLOWED_ORIGINS_ENV
+  ];
+  
   const origin = req.headers.origin;
-  if (allowedOrigins.includes(origin)) {
+  
+  // Log CORS check for debugging (only in development or if explicitly enabled)
+  if (process.env.DEBUG_CORS === 'true' || process.env.NODE_ENV === 'development') {
+    console.log(`[CORS] Request from: ${origin || 'No Origin'}`);
+  }
+
+  if (origin && allowedOrigins.includes(origin)) {
     res.setHeader('Access-Control-Allow-Origin', origin);
+  } else if (!origin) {
+    // For non-browser requests or browsers not sending origin
+    res.setHeader('Access-Control-Allow-Origin', '*'); 
   } else {
+    // Standard fallback
     res.setHeader('Access-Control-Allow-Origin', CORS_ORIGIN);
   }
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, x-for-chat');
   res.setHeader('Access-Control-Allow-Methods', 'GET,POST,PUT,PATCH,DELETE,OPTIONS');
+  res.setHeader('Access-Control-Allow-Credentials', 'true');
 }
 
 async function startServer() {

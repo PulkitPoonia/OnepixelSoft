@@ -8,8 +8,8 @@ import { loadConversations, loadAllUsers } from '../../redux/action/Chat';
 import { loadProjectsFromDatabase } from '../../redux/action/ToDo';
 import { Link, useNavigate } from 'react-router-dom';
 import './Dashboard.css';
+import { API_BASE } from '../../config';
 
-const API_BASE = import.meta.env.VITE_API_BASE || 'https://onepixelsoft.onrender.com';
 
 function getImageUrl(url) {
   if (!url) return '';

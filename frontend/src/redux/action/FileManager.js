@@ -12,7 +12,7 @@ import {
   SET_ERROR
 } from '../constants/FileManager';
 
-const BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:4000';
+import { API_BASE as BASE_URL } from '../../config';
 
 // Load all files
 export const loadFiles = () => async (dispatch) => {
