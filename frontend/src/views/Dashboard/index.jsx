@@ -9,7 +9,7 @@ import { loadProjectsFromDatabase } from '../../redux/action/ToDo';
 import { Link, useNavigate } from 'react-router-dom';
 import './Dashboard.css';
 
-const API_BASE = import.meta.env.VITE_API_BASE || 'http://localhost:4000';
+const API_BASE = import.meta.env.VITE_API_BASE || 'https://onepixelsoft.onrender.com';
 
 function getImageUrl(url) {
   if (!url) return '';
