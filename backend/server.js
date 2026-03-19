@@ -133,10 +133,10 @@ function getUserFromRequest(req) {
 
 /* ================= CORS ================= */
 function addCors(res, req) {
-  const allowedOrigins = [
-    'http://localhost:5173',
-    'https://onepixel-eight.vercel.app',
-  ];
+ const allowedOrigins = [
+  'http://localhost:5173',
+  'https://onepixel-soft.vercel.app',
+];
   const origin = req.headers.origin;
   if (allowedOrigins.includes(origin)) {
     res.setHeader('Access-Control-Allow-Origin', origin);
