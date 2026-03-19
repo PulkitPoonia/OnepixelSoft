@@ -96,6 +96,9 @@ function AppContent() {
             }
           />
 
+          {/* FILE MANAGER REDIRECT */}
+          <Route path="/file-manager" element={<Navigate to="/apps/file-manager" replace />} />
+
           {/* MAIN APP (PROTECTED) */}
           <Route
             path="/*"
